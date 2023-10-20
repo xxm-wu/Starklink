@@ -1,87 +1,82 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import theme from './theme/themeConfig';
+import { Button, ConfigProvider, Space, Typography } from 'antd';
+import { TwitterOutlined } from '@ant-design/icons';
 
 import { Account, Provider } from "starknet";
 
+const { Title, Text, Link } = Typography;
+
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <div></div>
-        <div>
-          <a
-            href="https://www.starknet.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{" "}
-            <Image
-              src="/starknet.svg"
-              alt="Starknet Logo"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <ConfigProvider theme={theme}>
+      <main className={styles.main}>
+        <div className={styles.center}>
+          <Image src="/logo.svg" alt="Logo" width={224} height={150} priority />
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image src="/logo.svg" alt="Logo" width={448} height={299} priority />
-      </div>
-
-      <button className="button">Sign In</button>
-      <h1>The marketplace for your friends.</h1>
-
-      <div className={styles.grid}>
-        <a
-          href="https://twitter.com"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Twitter <span>-&gt;</span>
-          </h2>
+        <Space align="center" direction="vertical" size='large'>
+          <Button type="primary" size="large" shape="round" icon={<TwitterOutlined />}>Sign In with Twitter</Button>
+          <h1>The marketplace for your friends.</h1>
           <p></p>
-        </a>
+          <Space>
+            <a
+              href="https://twitter.com"
+              className={styles.card}
+              target="_blank"
+              rel="noopener noreferrer"
+            > Twitter <span>-&gt;</span>
 
-        <a
-          href="https://discord.com/"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Discord <span>-&gt;</span>
-          </h2>
-          <p></p>
-        </a>
+            </a>
 
-        <a
-          href=""
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Telegram <span>-&gt;</span>
-          </h2>
-          <p></p>
-        </a>
+            <a
+              href="https://discord.com/"
+              className={styles.card}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discord <span>-&gt;</span>
+            </a>
 
-        <a
-          href=""
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Doc <span>-&gt;</span>
-          </h2>
+            <a
+              href=""
+              className={styles.card}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Telegram <span>-&gt;</span>
+            </a>
+
+            <a
+              href=""
+              className={styles.card}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Doc <span>-&gt;</span>
+            </a>
+          </Space>
           <p></p>
-        </a>
-      </div>
-    </main>
+          <div className={styles.description}>
+            Powered by
+            <a
+              href="https://www.starknet.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/starknet.svg"
+                alt="Starknet Logo"
+                width={100}
+                height={24}
+                priority
+              />
+            </a>
+          </div>
+        </Space>
+
+
+      </main>
+    </ConfigProvider>
   );
 }

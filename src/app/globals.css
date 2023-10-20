@@ -105,15 +105,3 @@ a {
     color-scheme: dark;
   }
 }
-
-font{
-  font-size: 16px;
-}
-
-button {
-  background-color: #7401B8;
-  border-radius: 16px;
-  width: 440px;
-  height: 50px;
-  color: white;
-}
