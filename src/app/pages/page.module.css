@@ -5,6 +5,7 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  background: '@layout-body-background';
 }
 
 .description {
@@ -227,3 +228,4 @@
     transform: rotate(0deg);
   }
 }
+
