@@ -1,22 +1,38 @@
+'use client';
+
 import Image from "next/image";
 import styles from "./page.module.css";
 import theme from './theme/themeConfig';
 import { Button, ConfigProvider, Space, Typography } from 'antd';
 import { TwitterOutlined } from '@ant-design/icons';
-
 import { Account, Provider } from "starknet";
+import { TwitterApi } from 'twitter-api-v2';
 
-const { Title, Text, Link } = Typography;
+const { Title, Paragraph, Text, Link } = Typography;
+
+function Login(){
+   const twitterLogin = async () => {
+    const twitterClient =  new TwitterApi({
+      appKey: process.env.CONSUMER_TOKEN,
+      appSecret: process.env.CONSUMER_SECRET,
+    });
+
+    const authUrl = await twitterClient.generateAuthLink('http://localhost:3000/');
+    window.location.href = authUrl;
+  };
+  return <Button type="primary" size="large" shape="round" icon={<TwitterOutlined />} onClick={twitterLogin}>Sign In with Twitter</Button>;
+}
 
 export default function Home() {
   return (
     <ConfigProvider theme={theme}>
       <main className={styles.main}>
+        
         <div className={styles.center}>
           <Image src="/logo.svg" alt="Logo" width={224} height={150} priority />
         </div>
         <Space align="center" direction="vertical" size='large'>
-          <Button type="primary" size="large" shape="round" icon={<TwitterOutlined />}>Sign In with Twitter</Button>
+          <Login />
           <h1>The marketplace for your friends.</h1>
           <p></p>
           <Space>
